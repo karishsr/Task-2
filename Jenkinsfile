@@ -1,22 +1,24 @@
 pipeline {
     agent any
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/karishsr/Task-2.git'
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Building the application...'
-                sh 'mvn clean package'  // Example for Java applications
             }
         }
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh 'mvn test'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying the application...'
-                sh 'scp target/myapp.jar user@server:/deploy/path/'  // Example for deployment
             }
         }
     }
