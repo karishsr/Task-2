@@ -4,16 +4,19 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the application...'
+                sh 'mvn clean package'  // Example for Java applications
             }
         }
         stage('Test') {
             steps {
                 echo 'Running tests...'
+                sh 'mvn test'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying the application...'
+                sh 'scp target/myapp.jar user@server:/deploy/path/'  // Example for deployment
             }
         }
     }
